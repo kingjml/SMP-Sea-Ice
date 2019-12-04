@@ -1,0 +1,17 @@
+name: smp-sea-ice
+channels: 
+  - defaults
+dependencies:
+  - geopandas
+  - python=3
+  - jupyter
+  - matplotlib
+  - pandas
+  - pyproj
+  - scikit-learn
+  - scipy
+  - statsmodels
+  - pip
+  - pip:
+      - snowmicropyn==1.0.1
+      - geostatsmodels==0.3.3
