@@ -16,7 +16,7 @@ LON: WGS-84 Longitude [DD]
 PITFILE: Name of pit file for which summary data was generated
 SMPF: SMP file number associated with the pit
 MPD: Mean of nearby Magnaprobe snow depths [m]
-SD: Snow depth in the SMP probe hole [m?] 
+SD: Snow depth in the SMP probe hole [m] 
 PD: Penetration depth of the SMP [m]
 OFF: Offset between SMP tip and snow surface [m]
 NOTESMP: SMP measurement notes
