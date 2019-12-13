@@ -1,1 +1,4 @@
-wget -q "url-to-smp-on-s3"
+wget -q -O "data.zip" "http://data.snowscience.io/smp-sea-ice/King-SMP.zip"
+mkdir -p ./data/ 
+unzip -q data.zip -d ./data/
+rm data.zip
