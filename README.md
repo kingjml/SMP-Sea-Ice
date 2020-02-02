@@ -21,9 +21,9 @@ Local-scale variations in snow density and layering on Arctic sea ice were chara
 ## Getting Started
 There are several Jupyter notebooks within this repository which reproduce the various algorithms and figures used in the publication. To run the notebooks yourself, there are a couple of options:
 ### a) Interactively in an Internet Browser on Binder
-```
-placeholder for binder button
-```
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kingjml/SMP-Sea-Ice/master?filepath=index.ipynb)
+
 
 ### b) Locally using Conda
 1) Download and install [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
