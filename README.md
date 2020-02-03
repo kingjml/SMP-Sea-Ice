@@ -4,7 +4,7 @@
 This repository contains the algorithms and descriptions of techniques in support of the following publication:
 
 ```
-King et al, 2019 Local-scale variability of snow density on Arctic sea ice dx.diy.dorg/numbers
+King, J., Howell, S., Brady, M., Toose, P., Derksen, C., Haas, C., and Beckers, J.: Local-scale variability of snow density on Arctic sea ice, The Cryosphere Discuss., https://doi.org/10.5194/tc-2019-305, in review, 2020. 
 ```
 
 ## Abstract
