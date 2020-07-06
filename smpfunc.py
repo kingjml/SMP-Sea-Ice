@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 from scipy.signal import resample
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, interpolation
 
 def scale_profile(scaling_guess, depth_array, value_array, l_resample = 40, h_resample = 1):
     result_value = np.array([])
@@ -35,8 +35,13 @@ def scale_profile(scaling_guess, depth_array, value_array, l_resample = 40, h_re
         l_last = l_end
         
         if len(orig_value) > 2 :
+            #scaled_dist = depth_stretch[l_start_idx:l_end_idx+1]
+            #scaled_value, x1 = resample(orig_value,len(scaled_dist),orig_dist) 
+            #result_dist = np.append(result_dist,scaled_dist)
+            #result_value = np.append(result_value, scaled_value)
             scaled_dist = depth_stretch[l_start_idx:l_end_idx+1]
-            scaled_value, x1 = resample(orig_value,len(scaled_dist),orig_dist) 
+            scaling_z = len(scaled_dist)/len(orig_dist)
+            scaled_value = interpolation.zoom(orig_value,scaling_z)
             result_dist = np.append(result_dist,scaled_dist)
             result_value = np.append(result_value, scaled_value) 
     
