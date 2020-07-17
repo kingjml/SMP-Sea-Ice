@@ -2,9 +2,20 @@ import numpy as np
 import pandas as pd
 import math
 from scipy.signal import resample
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, interpolation
 
-def scale_profile(scaling_guess, depth_array, value_array, l_resample = 40, h_resample = 1):
+def scale_profile(scaling, depth_array, value_array, l_resample = 40, h_resample = 1):
+    """Scale snow property profiles to new distance representation
+    Argrumnets: 
+        scaling: An array of % values to scale each layer by
+        depth_array: The origional distance array
+        value_array: The origoinal snow property array
+        l_resample: Height of layers in mm
+        h_resample: Resampled resolution output in mm
+    Output:
+        result_dist: Resampled and scaled distance
+        result_value: REsampled and scaled snow property
+    """
     result_value = np.array([])
     result_dist = np.array([])
     
@@ -13,7 +24,7 @@ def scale_profile(scaling_guess, depth_array, value_array, l_resample = 40, h_re
         h_resample = delta_h
     l_last = np.array(-h_resample)
 
-    layer_thickness = l_resample + (scaling_guess * l_resample)
+    layer_thickness = l_resample + (scaling * l_resample)
     new_total_thickness = sum(layer_thickness)
     total_stretch = abs((new_total_thickness - depth_array.max())/depth_array.max())
     depth_stretch= np.arange(0,new_total_thickness, h_resample)
@@ -42,8 +53,8 @@ def scale_profile(scaling_guess, depth_array, value_array, l_resample = 40, h_re
     
     return result_dist, result_value
 
-def score_scaling(scaling_guess, depth_array, value_array, obs_array, l_resample = 40, h_resample = 1):
-    result_dist, result_rho = scale_profile(scaling_guess, depth_array, value_array, l_resample, h_resample)
+def score_scaling(scaling, depth_array, value_array, obs_array, l_resample = 40, h_resample = 1):
+    result_dist, result_rho = scale_profile(scaling, depth_array, value_array, l_resample, h_resample)
     smp_rho_interp = np.interp(depth_array,result_dist,result_rho)
     return (1/result_dist.max()*(np.power(np.log10(smp_rho_interp) - np.log10(obs_array),2)).sum())
 
@@ -66,10 +77,6 @@ def random_stretch(layer_num, max_change = 0.1, max_change_layer = 0.7):
     layer_order_sort = np.argsort(layer_order)
     return layer_stretch[layer_order_sort]
 
-def split_padded(a,n):
-    padding = (-len(a))%n
-    return np.split(np.concatenate((a,np.zeros(padding))),n)
-
 def nan_helper(y):
     """Helper to handle indices and logical indices of NaNs.
 
@@ -84,7 +91,6 @@ def nan_helper(y):
         >>> nans, x= nan_helper(y)
         >>> y[nans]= np.interp(x(nans), x(~nans), y[~nans])
     """
-
     return np.isnan(y), lambda z: z.to_numpy().nonzero()[0]
 
 def preprocess(profile, smoothing = 0.5, noise_threshold = 0.01, verbose = False):
