@@ -39,4 +39,4 @@ There are several Jupyter notebooks within this repository which reproduce the v
     (smp-sea-ice) $ jupyter notebook index.ipynb
     ```
 5) (*Optional*) If you would like to run the brute-force measurement alignment routine in notebook 
-[#1](./Part_1_Validation.ipynb) yourself, you will need to retrieve the SMP datasets from [this link](http://data.snowscience.io/smp-sea-ice/King-SMP.zip)
+[#1](./Part_1_Validation.ipynb) yourself, you will need to retrieve the SMP datasets from [this link](https://crd-data-donnees-rdc.ec.gc.ca/CPS/publications/2020_King_TC_Local-scale_variability_of_snow_density_on_Arctic_sea_ice/King-SMP.zip)
