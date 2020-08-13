@@ -1,5 +1,4 @@
-# adapted from post by user Sylvaticus: https://discourse.jupyter.org/t/how-to-build-mybinder-image-automatically-at-each-commit/5381/3
-# this workflow will hopefully cache the binder image after a push/PR to master so the badge-button doesn't have to be clicked in order to trigger a rebuild
+# adapted from post by Hamel Husain: https://discourse.jupyter.org/t/how-to-reduce-mybinder-org-repository-startup-time/4956/2
 name: binder
 on:
   push:
@@ -11,9 +10,13 @@ jobs:
   Create-MyBinderOrg-Image:
     runs-on: ubuntu-latest
     steps:
-    - name: cache binder build on mybinder.org
+    - name: checkout files in repo
+      uses: actions/checkout@master
+    - name: update jupyter dependencies with repo2docker
       uses: jupyterhub/repo2docker-action@master
       with:
-        NO_PUSH: true
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        MYBINDERORG_CACHE: true
         MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.
-        IMAGE_NAME: kingjml/smp-sea-ice # note that lowercase is required
+        IMAGE_NAME: "kingjml/smp-sea-ice" # if we don't set this, the image will probably have m9brady as the creator
