@@ -1,3 +1,11 @@
+
+#!/bin/bash
+
+# refresh the fontcache in matplotlib for Times New Roman
+python -c "import matplotlib as mpl; mpl.use('Agg'); import pylab as plt; fig, ax = plt.subplots(); fig.savefig('test.png')"
+test -e test.png && rm test.png
+
+# download the datasets (kept out-of-image because they're big)
 wget -q -O "data.zip" "https://crd-data-donnees-rdc.ec.gc.ca/CPS/publications/2020_King_TC_Local-scale_variability_of_snow_density_on_Arctic_sea_ice/King-SMP.zip"
 mkdir -p ./data/ 
 unzip -q data.zip -d ./data/
