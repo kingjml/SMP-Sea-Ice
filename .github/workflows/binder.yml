@@ -1,4 +1,3 @@
-# adapted from post by Hamel Husain: https://discourse.jupyter.org/t/how-to-reduce-mybinder-org-repository-startup-time/4956/2
 name: binder
 on:
   push:
@@ -7,18 +6,11 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  trigger-mybinder-build:
     runs-on: ubuntu-latest
     steps:
-    
-    - name: checkout files in repo
-      uses: actions/checkout@master
-      
-    - name: update jupyter dependencies with repo2docker
+    - name: cache binder build on mybinder.org
       uses: jupyterhub/repo2docker-action@master
       with:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        BINDER_CACHE: true
-        PUBLIC_REGISTRY_CHECK: true
-        IMAGE_NAME: "kingjml/smp-sea-ice"
+        NO_PUSH: true
+        MYBINDERORG_TAG: ${{ github.event.ref }} # This builds the container on mybinder.org with the branch that was pushed on.
