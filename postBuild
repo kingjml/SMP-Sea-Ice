@@ -6,7 +6,7 @@ python -c "import matplotlib as mpl; mpl.use('Agg'); import pylab as plt; fig, a
 test -e test.png && rm test.png
 
 # download the datasets (kept out-of-image because they're big)
-wget -q -O "data.zip" "https://crd-data-donnees-rdc.ec.gc.ca/CPS/publications/2020_King_TC_Local-scale_variability_of_snow_density_on_Arctic_sea_ice/King-SMP.zip"
+wget -q -O "data.zip" "https://zenodo.org/record/4068349/files/King-SMP.zip"
 mkdir -p ./data/ 
 unzip -q data.zip -d ./data/
 rm data.zip
