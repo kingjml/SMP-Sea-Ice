@@ -3,7 +3,7 @@
 
 This repository contains algorithms, datasets, and techniques referenced in following publication and digital object identifier:
 
-> King, J., Howell, S., Brady, M., Toose, P., Derksen, C., Haas, C., and Beckers, J.: <b>Local-scale variability of snow density on Arctic sea ice</b>, The Cryosphere Discuss., https://doi.org/10.5194/tc-2019-305, in review, 2020.
+> King, J., Howell, S., Brady, M., Toose, P., Derksen, C., Haas, C., and Beckers, J.: <b>Local-scale variability of snow density on Arctic sea ice</b>, The Cryosphere, https://doi.org/10.5194/tc-14-4323-2020, 14(12), 4323–4339, 2020.
 
 > [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4068349.svg)](https://doi.org/10.5281/zenodo.4068349)
 
